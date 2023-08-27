@@ -2,7 +2,7 @@
 {
     "shutdown in seconds"
     {
-        "#format"    "{1:i}"
+        "#format"    "{1:d}"
         "en"        "<font color='#ff0000' size='40'>WARNING: </font><font size='40'>Server shutting down in {1} seconds.</font>"
         "jp"        "<font color='#ff0000' size='40'>警告: </font><font size='40'>サーバーはあと{1}秒でシャットダウンされます</font>"
     }
