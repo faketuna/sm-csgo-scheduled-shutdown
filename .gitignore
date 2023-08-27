@@ -1,0 +1,3 @@
+/scripting/*
+!/scripting/scheduledShutdown.sp
+.vscode
