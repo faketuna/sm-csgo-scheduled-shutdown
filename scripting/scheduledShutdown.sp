@@ -116,6 +116,10 @@ public Action CheckTime(Handle timer, any useless)
 {
     if (g_bEnabled)
     {
+        if (g_bDuringShutdown) {
+            return Plugin_Continue;
+        }
+        
         int gettime = GetTime();
 
         char strtime[8];
@@ -138,7 +142,7 @@ public Action CheckTime(Handle timer, any useless)
         }
     }
     
-    return Plugin_Stop;
+    return Plugin_Continue;
 }
 
 public Action ShutdownCountdown(Handle timer) {
