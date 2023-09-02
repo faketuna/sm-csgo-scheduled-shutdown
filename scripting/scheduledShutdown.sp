@@ -58,7 +58,7 @@ public void OnPluginStart()
     
     CreateConVar("sm_scheduledshutdown_version", PLUGIN_VERSION, "ScheduledShutdown version.", FCVAR_NOTIFY|FCVAR_DONTRECORD);
     g_hEnabled = CreateConVar("sm_scheduledshutdown", "1", "Enable ScheduledShutdown.", CVAR_FLAGS, true, 0.0, true, 1.0);
-    g_hTime = CreateConVar("sm_scheduledshutdown_time", "05:00", "Time to shutdown server.", CVAR_FLAGS);
+    g_hTime = CreateConVar("sm_scheduledshutdown_time", "0500", "Time to shutdown server.", CVAR_FLAGS);
     g_cShutdownTime = CreateConVar("sm_scheduledshutdown_seconds", "30", "How long to take shutdown in seconds.", CVAR_FLAGS, true, 0.0, true, 100.0);
     g_cEnableRoundEnd = CreateConVar("sm_scheduledshutdown_round_end", "1", "Shutdown in end round instead of countdown.", CVAR_FLAGS, true, 0.0, true, 1.0);
     
@@ -119,11 +119,10 @@ public Action CheckTime(Handle timer, any useless)
         int gettime = GetTime();
 
         char strtime[8];
-        FormatTime(strtime, sizeof(strtime), "%H:%M", gettime);
-        gettime -= (StringToInt(strtime) / 100) * 3600;
-        
-        int time = StringToInt(strtime);
-        if (time >= g_iTime && time <= g_iTime)
+        FormatTime(strtime, sizeof(strtime), "%H%M", gettime);
+
+        int _time = StringToInt(strtime);
+        if (_time == g_iTime)
         {
             if (g_bEnableRoundEndShutdown) {
                 DisplayTranslatedHTMLHud(5, "shutdown in round end");
